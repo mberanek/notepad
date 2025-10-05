@@ -35,6 +35,12 @@ class _NoteListPageState extends ConsumerState<NoteListPage> {
 
   Widget _noteList() {
     List<Note> notes = ref.watch(notesProvider);
+    if (notes.isEmpty) {
+      return Container(
+        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        child: Text("Klepnutím na \"+\" vytvoříte poznámku"),
+      );
+    }
     return ListView.builder(
       padding: EdgeInsets.symmetric(vertical: 8, horizontal: 12),
       itemCount: notes.length,
@@ -96,7 +102,7 @@ class _NoteListPageState extends ConsumerState<NoteListPage> {
     Navigator.of(context).push(
       MaterialPageRoute(builder: (context) => NoteEditPage(noteIndex: index)),
     );
-  } 
+  }
 
   void _createNewNote() {
     ref.read(notesProvider.notifier).addNote(Note(title: "", text: ""));
