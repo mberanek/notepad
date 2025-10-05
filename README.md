@@ -1,3 +1,3 @@
 # notepad
 
-A new Flutter project.
+A simple notepad app.
